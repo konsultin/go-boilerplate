@@ -1,5 +1,10 @@
 package config
 
+import (
+	"github.com/joho/godotenv"
+	"github.com/kelseyhightower/envconfig"
+)
+
 type Config struct {
 	Port  uint16 `envconfig:"PORT" default:"8080"`
 	Debug bool   `envconfig:"DEBUG" default:"false"`
@@ -15,4 +20,17 @@ type Config struct {
 	DatabaseMaxIdleConn     int    `envconfig:"DB_MAX_IDLE_CONN" default:"10"`
 	DatabaseMaxOpenConn     int    `envconfig:"DB_MAX_OPEN_CONN" default:"100"`
 	DatabaseMaxConnLifetime int    `envconfig:"DB_MAX_CONN_LIFETIME" default:"300"`
+}
+
+// Load reads environment variables (optionally from .env) into Config with defaults.
+func Load() (*Config, error) {
+	// Ignore error if .env is missing; env vars still apply.
+	_ = godotenv.Load()
+
+	cfg := new(Config)
+	if err := envconfig.Process("", cfg); err != nil {
+		return nil, err
+	}
+
+	return cfg, nil
 }

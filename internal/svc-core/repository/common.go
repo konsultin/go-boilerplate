@@ -12,6 +12,7 @@ type Repository struct {
 	config   *RepositoryConfig
 	db       *sqlk.Database
 	adapters *repositoryAdapters
+	log      logk.Logger
 }
 
 func NewRepository(cfg *config.Config) (*Repository, error) {
@@ -51,6 +52,8 @@ func NewRepository(cfg *config.Config) (*Repository, error) {
 		db:       db,
 		adapters: adapters,
 	}
+
+	logk.Get().Infof("Connected to database '%s' successfully", cfg.DatabaseName)
 
 	return &r, nil
 }
