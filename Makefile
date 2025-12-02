@@ -12,21 +12,29 @@ export
 .PHONY: init db-up db-down db-script db-version bs
 
 init:
-	@read -p "Nama project (tanpa spasi): " NAME; \
-	if [ -z "$$NAME" ]; then echo "Nama project wajib diisi"; exit 1; fi; \
+	@read -p "Project name (no spaces): " NAME; \
+	if [ -z "$$NAME" ]; then echo "Project name is required"; exit 1; fi; \
 	MODULE="github.com/Konsultin/$$NAME"; \
-	echo "Mengatur module ke $$MODULE"; \
+	echo "Setting module to $$MODULE"; \
 	go mod edit -module "$$MODULE"; \
 	find . -type f \( -name '*.go' -o -name 'go.mod' -o -name 'go.sum' -o -name '*.yaml' -o -name '*.yml' -o -name 'Makefile' -o -name '*.md' -o -name '*.env' \) -not -path './.git/*' -not -path './vendor/*' -print0 | xargs -0 sed -i "s#github.com/Konsultin/project-goes-here#$$MODULE#g"; \
-	echo "Menjalankan go mod tidy"; \
+	echo "Running go mod tidy"; \
 	go mod tidy; \
-	echo "Menginstall migrate CLI"; \
+	echo "Installing migrate CLI"; \
 	go install github.com/golang-migrate/migrate/v4/cmd/migrate@latest; \
-	if [ -f .env.example ]; then cp .env.example .env; else echo ".env.example tidak ditemukan, lewati copy"; fi; \
-	echo "Inisiasi selesai"
+	if [ -f .env.example ]; then cp .env.example .env; else echo ".env.example not found, skipping copy"; fi; \
+	if [ -f .env ]; then \
+		if grep -q '^COMPOSE_PROJECT_NAME=' .env; then \
+			sed -i "s/^COMPOSE_PROJECT_NAME=.*/COMPOSE_PROJECT_NAME=$$NAME/" .env; \
+		else \
+			echo "COMPOSE_PROJECT_NAME=$$NAME" >> .env; \
+		fi; \
+		echo "Set COMPOSE_PROJECT_NAME=$$NAME for container names"; \
+	fi; \
+	echo "Initialization completed"
 
 db-url = \
-if [ -z "$$DB_DRIVER" ]; then echo "DB_DRIVER tidak diset"; exit 1; fi; \
+if [ -z "$$DB_DRIVER" ]; then echo "DB_DRIVER is not set"; exit 1; fi; \
 case "$$DB_DRIVER" in \
 	mysql|mariadb) \
 		echo "mysql://$${DB_USERNAME}:$${DB_PASSWORD}@tcp($${DB_HOST}:$${DB_PORT})/$${DB_NAME}?parseTime=true";; \
@@ -56,7 +64,7 @@ db-script:
 db-version:
 	@DB_URL=$$($(db-url)); \
 	read -p "Migration Target: " VERSION; \
-	if [ -z "$$VERSION" ]; then echo "Versi wajib diisi"; exit 1; fi; \
+	if [ -z "$$VERSION" ]; then echo "Version is required"; exit 1; fi; \
 	echo "Change Migration Version to $$VERSION with $$DB_URL"; \
 	"$(MIGRATE)" -path "$(MIGRATIONS_DIR)" -database "$$DB_URL" goto "$$VERSION"
 
