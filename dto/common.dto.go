@@ -1,12 +1,10 @@
 package dto
 
-import "time"
-
 type Response[T any] struct {
-	Status    string    `json:"status"`
-	Message   string    `json:"message"`
-	Data      T         `json:"data"`
-	Timestamp time.Time `json:"timestamp"`
+	Message   string `json:"message"`
+	Code      Code   `json:"code"`
+	Data      T      `json:"data"`
+	Timestamp int64  `json:"timestamp"`
 }
 
 type ErrorTrace struct {

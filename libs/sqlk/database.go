@@ -2,6 +2,7 @@ package sqlk
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -90,4 +91,11 @@ func (db *Database) IsConnected() bool {
 
 func (db *Database) GetConnection(ctx context.Context) (*sqlx.Conn, error) {
 	return db.conn.Connx(ctx)
+}
+
+func (db *Database) PingContext(ctx context.Context) error {
+	if db.conn == nil {
+		return fmt.Errorf("sqlk: database is not initialized")
+	}
+	return db.conn.PingContext(ctx)
 }

@@ -1,6 +1,9 @@
 package repository
 
 import (
+	"context"
+	"fmt"
+
 	"github.com/Konsultin/project-goes-here/config"
 	"github.com/Konsultin/project-goes-here/libs/errk"
 	"github.com/Konsultin/project-goes-here/libs/logk"
@@ -56,9 +59,24 @@ func NewRepository(cfg *config.Config) (*Repository, error) {
 		config:   repoConfig,
 		db:       db,
 		adapters: adapters,
+		log:      logk.Get().NewChild(logkOption.WithNamespace("svc-core/repository")),
 	}
 
 	logk.Get().Infof("Connected to database '%s' successfully", cfg.DatabaseName)
 
 	return &r, nil
+}
+
+func (r *Repository) Close() error {
+	if r == nil || r.db == nil {
+		return nil
+	}
+	return r.db.Close()
+}
+
+func (r *Repository) Ping(ctx context.Context) error {
+	if r == nil || r.db == nil {
+		return fmt.Errorf("repository not initialized")
+	}
+	return r.db.PingContext(ctx)
 }

@@ -1,6 +1,6 @@
 module github.com/Konsultin/project-goes-here
 
-go 1.23.4
+go 1.22.5
 
 require (
 	github.com/fasthttp/router v1.5.0

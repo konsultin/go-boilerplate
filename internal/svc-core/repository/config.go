@@ -13,7 +13,7 @@ type RepositoryConfig struct {
 func NewRepositoryConfig(config *config.Config) (*RepositoryConfig, error) {
 	repoConfig := new(RepositoryConfig)
 
-	repoConfig.Timeout = time.Duration(config.HttpClientRequestTimeout) * time.Second
+	repoConfig.Timeout = time.Duration(config.DatabaseTimeoutSeconds) * time.Second
 
-    return repoConfig, nil
+	return repoConfig, nil
 }
