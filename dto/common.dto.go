@@ -19,7 +19,9 @@ type Subject struct {
 	Role     string `json:"role"`
 }
 
-type Ref struct {
-	Id    int    `json:"id"`
+type SimpleData struct {
 	Value string `json:"value"`
+	Name  string `json:"name"`
 }
+
+type Empty struct{}
