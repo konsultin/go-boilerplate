@@ -39,18 +39,10 @@ setup-project:
 	else \
 		echo ".env not found; skipped updating COMPOSE_PROJECT_NAME/LOG_NAMESPACE"; \
 	fi; \
-	echo "Project setup completed. Run 'make init' to finish initialization"; \
-	if ! command -v $(AIR) >/dev/null 2>&1; then \
-		echo "Installing air for dev hot-reload"; \
-		go install github.com/air-verse/air@latest; \
-	fi; \
-	printf '\033[0;31m%s\033[0m\n' "Reminder: setup environment first (e.g. update .env) before running services"
+
+	printf '\033[0;31m%s\033[0m\n' "Setup Completed - Run 'make init' to finish initialization"
 
 init:
-	@if grep -q '^module github.com/Konsultin/project-goes-here' go.mod; then \
-		echo "Project name is still the default. Run 'make setup-project' first."; \
-		exit 1; \
-	fi; \
 	if [ -f .env.example ] && [ ! -f .env ]; then \
 		echo "Creating .env from .env.example"; \
 		cp .env.example .env; \
@@ -96,16 +88,16 @@ down:
 	@echo "Stopping docker compose stack..."; \
 	$(COMPOSE) down
 
-db-url = \
-if [ -z "$$DB_DRIVER" ]; then echo "DB_DRIVER is not set"; exit 1; fi; \
-case "$$DB_DRIVER" in \
-	mysql|mariadb) \
-		echo "mysql://$${DB_USERNAME}:$${DB_PASSWORD}@tcp($${DB_HOST}:$${DB_PORT})/$${DB_NAME}?parseTime=true";; \
-	postgres|postgresql|pg) \
-		echo "postgres://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOST}:$${DB_PORT}/$${DB_NAME}?sslmode=disable";; \
-	*) \
-		echo "unknown DB_DRIVER '$$DB_DRIVER' (mysql/postgres)"; exit 1;; \
-esac
+	db-url = \
+	if [ -z "$$DB_DRIVER" ]; then echo "DB_DRIVER is not set"; exit 1; fi; \
+	case "$$DB_DRIVER" in \
+		mysql|mariadb) \
+			echo "mysql://$${DB_USERNAME}:$${DB_PASSWORD}@tcp($${DB_HOST}:$${DB_PORT})/$${DB_NAME}?parseTime=true";; \
+		postgres|postgresql|pg) \
+			echo "postgres://$${DB_USERNAME}:$${DB_PASSWORD}@$${DB_HOST}:$${DB_PORT}/$${DB_NAME}?sslmode=disable";; \
+		*) \
+			echo "unknown DB_DRIVER '$$DB_DRIVER' (mysql/postgres)"; exit 1;; \
+	esac
 
 db-up:
 	@DB_URL=$$($(db-url)); \
