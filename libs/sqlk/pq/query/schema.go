@@ -1,9 +1,9 @@
 package query
 
 import (
-	"github.com/Konsultin/project-goes-here/libs/sqlk"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/option"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/schema"
+	"github.com/konsultin/project-goes-here/libs/sqlk"
+	"github.com/konsultin/project-goes-here/libs/sqlk/option"
+	"github.com/konsultin/project-goes-here/libs/sqlk/schema"
 )
 
 func Schema(s *schema.Schema) *SchemaBuilder {

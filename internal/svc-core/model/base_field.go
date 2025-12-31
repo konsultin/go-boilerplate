@@ -3,9 +3,9 @@ package model
 import (
 	"encoding/json"
 
-	"github.com/Konsultin/project-goes-here/dto"
-	"github.com/Konsultin/project-goes-here/libs/sqlk"
-	"github.com/Konsultin/project-goes-here/libs/timek"
+	"github.com/konsultin/project-goes-here/dto"
+	"github.com/konsultin/project-goes-here/libs/sqlk"
+	"github.com/konsultin/project-goes-here/libs/timek"
 )
 
 type BaseField struct {

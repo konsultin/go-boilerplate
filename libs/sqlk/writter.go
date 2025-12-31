@@ -1,8 +1,8 @@
 package sqlk
 
 import (
-	"github.com/Konsultin/project-goes-here/libs/sqlk/op"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/schema"
+	"github.com/konsultin/project-goes-here/libs/sqlk/op"
+	"github.com/konsultin/project-goes-here/libs/sqlk/schema"
 )
 
 // SchemaReference must be implemented by part of query that may not require defining schema,

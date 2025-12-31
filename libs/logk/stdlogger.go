@@ -8,9 +8,9 @@ import (
 	stdLog "log"
 	"os"
 
-	logkContext "github.com/Konsultin/project-goes-here/libs/logk/context"
-	"github.com/Konsultin/project-goes-here/libs/logk/level"
-	logkOption "github.com/Konsultin/project-goes-here/libs/logk/option"
+	logkContext "github.com/konsultin/project-goes-here/libs/logk/context"
+	"github.com/konsultin/project-goes-here/libs/logk/level"
+	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
 )
 
 var stdLevelPrefix = map[level.LogLevel]string{

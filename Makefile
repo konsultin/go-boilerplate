@@ -15,10 +15,10 @@ export
 setup-project:
 	@read -p "Project name (no spaces): " NAME; \
 	if [ -z "$$NAME" ]; then echo "Project name is required"; exit 1; fi; \
-	MODULE="github.com/Konsultin/$$NAME"; \
+	MODULE="github.com/konsultin/$$NAME"; \
 	echo "Setting module to $$MODULE"; \
 	go mod edit -module "$$MODULE"; \
-	find . -type f \( -name '*.go' -o -name 'go.mod' -o -name 'go.sum' -o -name '*.yaml' -o -name '*.yml' -o -name 'Makefile' -o -name '*.md' -o -name '*.env' \) -not -path './.git/*' -not -path './vendor/*' -print0 | xargs -0 sed -i "s#github.com/Konsultin/project-goes-here#$$MODULE#g"; \
+	find . -type f \( -name '*.go' -o -name 'go.mod' -o -name 'go.sum' -o -name '*.yaml' -o -name '*.yml' -o -name 'Makefile' -o -name '*.md' -o -name '*.env' \) -not -path './.git/*' -not -path './vendor/*' -print0 | xargs -0 sed -i "s#github.com/konsultin/project-goes-here#$$MODULE#g"; \
 	if [ -f .env.example ] && [ ! -f .env ]; then \
 		echo "Creating .env from .env.example"; \
 		cp .env.example .env; \

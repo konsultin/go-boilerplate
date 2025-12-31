@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Konsultin/project-goes-here/libs/sqlk"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/schema"
+	"github.com/konsultin/project-goes-here/libs/sqlk"
+	"github.com/konsultin/project-goes-here/libs/sqlk/schema"
 )
 
 func newTableWriter(tableName string, as string) *tableWriter {

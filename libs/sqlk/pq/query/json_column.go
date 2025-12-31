@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Konsultin/project-goes-here/libs/sqlk/op"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/option"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/schema"
+	"github.com/konsultin/project-goes-here/libs/sqlk/op"
+	"github.com/konsultin/project-goes-here/libs/sqlk/option"
+	"github.com/konsultin/project-goes-here/libs/sqlk/schema"
 )
 
 // JsonColumnWriter implements query.SelectWriter for a column that referred to a JSON

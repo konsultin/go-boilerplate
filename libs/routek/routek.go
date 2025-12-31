@@ -8,8 +8,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/Konsultin/project-goes-here/dto"
 	"github.com/fasthttp/router"
+	"github.com/konsultin/project-goes-here/dto"
 	"github.com/valyala/fasthttp"
 	"gopkg.in/yaml.v3"
 )

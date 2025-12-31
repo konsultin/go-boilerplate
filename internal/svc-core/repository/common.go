@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Konsultin/project-goes-here/config"
-	"github.com/Konsultin/project-goes-here/libs/errk"
-	"github.com/Konsultin/project-goes-here/libs/logk"
-	logkOption "github.com/Konsultin/project-goes-here/libs/logk/option"
-	"github.com/Konsultin/project-goes-here/libs/sqlk"
+	"github.com/konsultin/project-goes-here/config"
+	"github.com/konsultin/project-goes-here/libs/errk"
+	"github.com/konsultin/project-goes-here/libs/logk"
+	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
+	"github.com/konsultin/project-goes-here/libs/sqlk"
 )
 
 type Repository struct {

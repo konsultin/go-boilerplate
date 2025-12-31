@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"github.com/Konsultin/project-goes-here/dto"
-	"github.com/Konsultin/project-goes-here/libs/logk"
+	"github.com/konsultin/project-goes-here/dto"
+	"github.com/konsultin/project-goes-here/libs/logk"
 	"github.com/valyala/fasthttp"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Konsultin/project-goes-here/libs/sqlk/option"
+	"github.com/konsultin/project-goes-here/libs/sqlk/option"
 )
 
 type bindVar struct{}

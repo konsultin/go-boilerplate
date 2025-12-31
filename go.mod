@@ -1,4 +1,4 @@
-module github.com/Konsultin/project-goes-here
+module github.com/konsultin/project-goes-here
 
 go 1.23
 

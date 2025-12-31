@@ -1,6 +1,6 @@
 # routek - YAML-Based Routing Library
 
-A declarative routing library that generates HTTP routes from YAML configuration and maps them to handler methods. Part of the Konsultin backend boilerplate.
+A declarative routing library that generates HTTP routes from YAML configuration and maps them to handler methods. Part of the konsultin backend boilerplate.
 
 ## Features
 
@@ -52,7 +52,7 @@ func (h *UserHandler) CreateUser(ctx *fasthttp.RequestCtx) error {
 **3. Register Routes**:
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/routek"
+import "github.com/konsultin/project-goes-here/libs/routek"
 
 config := routek.Config{
     RouteFile: "internal/api-route.yaml",

@@ -3,7 +3,7 @@ package repository
 import (
 	"time"
 
-	"github.com/Konsultin/project-goes-here/config"
+	"github.com/konsultin/project-goes-here/config"
 )
 
 type RepositoryConfig struct {

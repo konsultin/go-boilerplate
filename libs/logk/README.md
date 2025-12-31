@@ -1,6 +1,6 @@
 # logk - Logging Library
 
-A flexible logging interface with standard logger implementation, support for multiple log levels, namespaces, and child loggers. Part of the Konsultin backend boilerplate.
+A flexible logging interface with standard logger implementation, support for multiple log levels, namespaces, and child loggers. Part of the konsultin backend boilerplate.
 
 ## Features
 
@@ -14,7 +14,7 @@ A flexible logging interface with standard logger implementation, support for mu
 ## Quick Start
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/logk"
+import "github.com/konsultin/project-goes-here/libs/logk"
 
 // Get global logger (auto-initialized from env)
 logger := logk.Get()
@@ -131,8 +131,8 @@ Namespaces help organize logs by component or module:
 
 ```go
 import (
-    "github.com/Konsultin/project-goes-here/libs/logk"
-    "github.com/Konsultin/project-goes-here/libs/logk/option"
+    "github.com/konsultin/project-goes-here/libs/logk"
+    "github.com/konsultin/project-goes-here/libs/logk/option"
 )
 
 // Create child logger with namespace
@@ -171,9 +171,9 @@ package main
 
 import (
     "os"
-    "github.com/Konsultin/project-goes-here/libs/logk"
-    "github.com/Konsultin/project-goes-here/libs/logk/level"
-    "github.com/Konsultin/project-goes-here/libs/logk/option"
+    "github.com/konsultin/project-goes-here/libs/logk"
+    "github.com/konsultin/project-goes-here/libs/logk/level"
+    "github.com/konsultin/project-goes-here/libs/logk/option"
 )
 
 func main() {
@@ -195,8 +195,8 @@ func main() {
 package repository
 
 import (
-    "github.com/Konsultin/project-goes-here/libs/logk"
-    "github.com/Konsultin/project-goes-here/libs/logk/option"
+    "github.com/konsultin/project-goes-here/libs/logk"
+    "github.com/konsultin/project-goes-here/libs/logk/option"
 )
 
 type UserRepository struct {
@@ -228,7 +228,7 @@ func (r *UserRepository) FindByID(id int) (*User, error) {
 ```go
 package service
 
-import "github.com/Konsultin/project-goes-here/libs/logk"
+import "github.com/konsultin/project-goes-here/libs/logk"
 
 type AuthService struct {
     logger logk.Logger
@@ -269,7 +269,7 @@ func (s *AuthService) Login(email, password string) (*Session, error) {
 package handler
 
 import (
-    "github.com/Konsultin/project-goes-here/libs/logk"
+    "github.com/konsultin/project-goes-here/libs/logk"
     "github.com/valyala/fasthttp"
 )
 
@@ -306,8 +306,8 @@ func (h *Handler) GetUser(ctx *fasthttp.RequestCtx) error {
 
 ```go
 import (
-    "github.com/Konsultin/project-goes-here/libs/logk"
-    "github.com/Konsultin/project-goes-here/libs/logk/option"
+    "github.com/konsultin/project-goes-here/libs/logk"
+    "github.com/konsultin/project-goes-here/libs/logk/option"
 )
 
 func ProcessPayment(amount float64, currency string) {

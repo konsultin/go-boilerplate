@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Konsultin/project-goes-here/libs/sqlk/schema"
+	"github.com/konsultin/project-goes-here/libs/sqlk/schema"
 )
 
 // AuditData holds audit field information

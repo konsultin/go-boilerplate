@@ -3,7 +3,7 @@ package logkOption
 import (
 	"context"
 
-	"github.com/Konsultin/project-goes-here/libs/logk/level"
+	"github.com/konsultin/project-goes-here/libs/logk/level"
 )
 
 type Options struct {

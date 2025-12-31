@@ -3,10 +3,10 @@ package middleware
 import (
 	"fmt"
 
-	"github.com/Konsultin/project-goes-here/dto"
-	"github.com/Konsultin/project-goes-here/libs/errk"
-	"github.com/Konsultin/project-goes-here/libs/logk"
-	logkOption "github.com/Konsultin/project-goes-here/libs/logk/option"
+	"github.com/konsultin/project-goes-here/dto"
+	"github.com/konsultin/project-goes-here/libs/errk"
+	"github.com/konsultin/project-goes-here/libs/logk"
+	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
 	"github.com/valyala/fasthttp"
 )
 

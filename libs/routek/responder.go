@@ -7,8 +7,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/Konsultin/project-goes-here/dto"
-	"github.com/Konsultin/project-goes-here/libs/errk"
+	"github.com/konsultin/project-goes-here/dto"
+	"github.com/konsultin/project-goes-here/libs/errk"
 	"github.com/valyala/fasthttp"
 )
 

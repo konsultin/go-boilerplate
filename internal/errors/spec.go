@@ -1,8 +1,8 @@
 package errors
 
 import (
-	"github.com/Konsultin/project-goes-here/internal/svc-core/constant"
-	"github.com/Konsultin/project-goes-here/libs/errk"
+	"github.com/konsultin/project-goes-here/internal/svc-core/constant"
+	"github.com/konsultin/project-goes-here/libs/errk"
 	fhttp "github.com/valyala/fasthttp"
 )
 

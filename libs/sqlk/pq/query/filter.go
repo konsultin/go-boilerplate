@@ -3,11 +3,11 @@ package query
 import (
 	"fmt"
 
-	"github.com/Konsultin/project-goes-here/libs/sqlk"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/op"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/option"
-	qs "github.com/Konsultin/project-goes-here/libs/sqlk/parse/querystring"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/schema"
+	"github.com/konsultin/project-goes-here/libs/sqlk"
+	"github.com/konsultin/project-goes-here/libs/sqlk/op"
+	"github.com/konsultin/project-goes-here/libs/sqlk/option"
+	qs "github.com/konsultin/project-goes-here/libs/sqlk/parse/querystring"
+	"github.com/konsultin/project-goes-here/libs/sqlk/schema"
 )
 
 type FilterBuilder struct {

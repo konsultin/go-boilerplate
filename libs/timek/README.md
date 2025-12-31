@@ -12,7 +12,7 @@ A production-ready time library wrapper around `carbon` with built-in Indonesian
 ## Quick Start
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/timek"
+import "github.com/konsultin/project-goes-here/libs/timek"
 
 // Get current time (Defaults to ID locale)
 now := timek.Now()

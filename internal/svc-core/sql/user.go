@@ -1,9 +1,9 @@
 package coreSql
 
 import (
-	"github.com/Konsultin/project-goes-here/libs/sqlk"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/pq/query"
 	"github.com/jmoiron/sqlx"
+	"github.com/konsultin/project-goes-here/libs/sqlk"
+	"github.com/konsultin/project-goes-here/libs/sqlk/pq/query"
 )
 
 type User struct {

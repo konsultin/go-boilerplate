@@ -1,6 +1,6 @@
 # errk - Structured Error Handling Library
 
-A Go library for structured error handling with namespace, code, metadata, traces, and error wrapping capabilities. Part of the Konsultin backend boilerplate.
+A Go library for structured error handling with namespace, code, metadata, traces, and error wrapping capabilities. Part of the konsultin backend boilerplate.
 
 ## Features
 
@@ -13,7 +13,7 @@ A Go library for structured error handling with namespace, code, metadata, trace
 ## Quick Start
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/errk"
+import "github.com/konsultin/project-goes-here/libs/errk"
 
 // Create a new error
 err := errk.NewError("USER_NOT_FOUND", "User with given ID does not exist")
@@ -148,7 +148,7 @@ if errors.Is(err, ErrNotFound) {
 ```go
 package repository
 
-import "github.com/Konsultin/project-goes-here/libs/errk"
+import "github.com/konsultin/project-goes-here/libs/errk"
 
 const namespace = "user.repository"
 

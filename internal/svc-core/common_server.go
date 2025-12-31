@@ -3,13 +3,13 @@ package svcCore
 import (
 	"time"
 
-	"github.com/Konsultin/project-goes-here/config"
-	"github.com/Konsultin/project-goes-here/internal/svc-core/constant"
-	"github.com/Konsultin/project-goes-here/internal/svc-core/repository"
-	"github.com/Konsultin/project-goes-here/internal/svc-core/service"
-	"github.com/Konsultin/project-goes-here/libs/errk"
-	"github.com/Konsultin/project-goes-here/libs/logk"
-	logkOption "github.com/Konsultin/project-goes-here/libs/logk/option"
+	"github.com/konsultin/project-goes-here/config"
+	"github.com/konsultin/project-goes-here/internal/svc-core/constant"
+	"github.com/konsultin/project-goes-here/internal/svc-core/repository"
+	"github.com/konsultin/project-goes-here/internal/svc-core/service"
+	"github.com/konsultin/project-goes-here/libs/errk"
+	"github.com/konsultin/project-goes-here/libs/logk"
+	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
 )
 
 type Server struct {

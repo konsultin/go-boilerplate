@@ -1,6 +1,6 @@
 package query
 
-import "github.com/Konsultin/project-goes-here/libs/sqlk/option"
+import "github.com/konsultin/project-goes-here/libs/sqlk/option"
 
 func On(col string, args ...interface{}) option.SetOptionFn {
 	return func(o *option.Options) {

@@ -3,9 +3,9 @@ package repository
 import (
 	"time"
 
-	"github.com/Konsultin/project-goes-here/config"
-	"github.com/Konsultin/project-goes-here/internal/svc-core/constant"
-	coreSql "github.com/Konsultin/project-goes-here/internal/svc-core/sql"
+	"github.com/konsultin/project-goes-here/config"
+	"github.com/konsultin/project-goes-here/internal/svc-core/constant"
+	coreSql "github.com/konsultin/project-goes-here/internal/svc-core/sql"
 )
 
 type repositoryAdapters struct {

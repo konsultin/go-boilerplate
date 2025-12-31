@@ -1,6 +1,6 @@
 # sqlk - SQL Database Library
 
-A powerful SQL abstraction library with support for MySQL and PostgreSQL, featuring schema management, query builder, soft deletes, audit fields, bulk operations, and transaction helpers. Part of the Konsultin backend boilerplate.
+A powerful SQL abstraction library with support for MySQL and PostgreSQL, featuring schema management, query builder, soft deletes, audit fields, bulk operations, and transaction helpers. Part of the konsultin backend boilerplate.
 
 ## Features
 
@@ -16,7 +16,7 @@ A powerful SQL abstraction library with support for MySQL and PostgreSQL, featur
 ## Quick Start
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/sqlk"
+import "github.com/konsultin/project-goes-here/libs/sqlk"
 
 // 1. Configure database
 config := sqlk.Config{
@@ -66,7 +66,7 @@ type Config struct {
 ### From Struct (Recommended)
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/sqlk/schema"
+import "github.com/konsultin/project-goes-here/libs/sqlk/schema"
 
 type User struct {
     ID        int       `db:"id"`
@@ -120,7 +120,7 @@ userSchema := schema.New(
 ### SELECT Queries
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/sqlk/pq/query"
+import "github.com/konsultin/project-goes-here/libs/sqlk/pq/query"
 
 // Basic select
 q := query.Select(userSchema, query.AllColumns).Build()
@@ -196,7 +196,7 @@ q := query.SoftDelete(userSchema).
 ## Operators
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/sqlk/op"
+import "github.com/konsultin/project-goes-here/libs/sqlk/op"
 
 // Comparison
 op.Equal(value)
@@ -273,7 +273,7 @@ q := query.BulkSoftDelete(userSchema).
 ### Using WithTransaction (Recommended)
 
 ```go
-import "github.com/Konsultin/project-goes-here/libs/sqlk"
+import "github.com/konsultin/project-goes-here/libs/sqlk"
 
 err := sqlk.WithTransaction(ctx, db.conn, nil, func(tx *sqlk.TxContext) error {
     // Insert user

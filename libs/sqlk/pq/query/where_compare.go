@@ -3,8 +3,8 @@ package query
 import (
 	"fmt"
 
-	"github.com/Konsultin/project-goes-here/libs/sqlk"
-	"github.com/Konsultin/project-goes-here/libs/sqlk/op"
+	"github.com/konsultin/project-goes-here/libs/sqlk"
+	"github.com/konsultin/project-goes-here/libs/sqlk/op"
 )
 
 type whereCompareWriter struct {

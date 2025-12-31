@@ -1,6 +1,6 @@
 package model
 
-import "github.com/Konsultin/project-goes-here/dto"
+import "github.com/konsultin/project-goes-here/dto"
 
 type Subject struct {
 	Id       string `json:"id"`

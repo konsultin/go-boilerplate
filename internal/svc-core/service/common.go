@@ -1,11 +1,11 @@
 package service
 
 import (
-	"github.com/Konsultin/project-goes-here/config"
-	"github.com/Konsultin/project-goes-here/dto"
-	"github.com/Konsultin/project-goes-here/internal/svc-core/model"
-	"github.com/Konsultin/project-goes-here/internal/svc-core/repository"
-	"github.com/Konsultin/project-goes-here/libs/logk"
+	"github.com/konsultin/project-goes-here/config"
+	"github.com/konsultin/project-goes-here/dto"
+	"github.com/konsultin/project-goes-here/internal/svc-core/model"
+	"github.com/konsultin/project-goes-here/internal/svc-core/repository"
+	"github.com/konsultin/project-goes-here/libs/logk"
 )
 
 type Service struct {

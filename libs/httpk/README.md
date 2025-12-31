@@ -1,6 +1,6 @@
 # httpk - HTTP Client Library
 
-A production-ready HTTP client library with automatic retry logic, circuit breaker pattern, and comprehensive error handling. Part of the Konsultin backend boilerplate.
+A production-ready HTTP client library with automatic retry logic, circuit breaker pattern, and comprehensive error handling. Part of the konsultin backend boilerplate.
 
 ## Features
 
@@ -16,7 +16,7 @@ A production-ready HTTP client library with automatic retry logic, circuit break
 ```go
 import (
     "context"
-    "github.com/Konsultin/project-goes-here/libs/httpk"
+    "github.com/konsultin/project-goes-here/libs/httpk"
 )
 
 // Create client with default config
@@ -280,7 +280,7 @@ type Logger interface {
 }
 
 // Use with logk
-import "github.com/Konsultin/project-goes-here/libs/logk"
+import "github.com/konsultin/project-goes-here/libs/logk"
 
 config := &httpk.Config{
     Logger: logk.Get(),
