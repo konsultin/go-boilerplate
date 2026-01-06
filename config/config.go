@@ -26,8 +26,11 @@ type Config struct {
 
 	JwtIssuer                  string `envconfig:"JWT_ISSUER"`
 	JwtSecret                  string `envconfig:"JWT_SECRET"`
-	UserSessionLifetime        int64  `envconfig:"USER_SESSION_LIFETIME"`
-	UserSessionRefreshLifetime int64  `envconfig:"USER_SESSION_REFRESH_LIFETIME"`
+	UserSessionLifetime        int64  `envconfig:"USER_SESSION_LIFETIME" default:"3600"`
+	UserSessionRefreshLifetime int64  `envconfig:"USER_SESSION_REFRESH_LIFETIME" default:"2592000"`
+
+	FeatureFlagSingleDevice bool `envconfig:"FEATURE_FLAG_SINGLE_DEVICE" default:"false"`
+	FeatureFlagUUPDP        bool `envconfig:"FEATURE_FLAG_UUPDP" default:"false"`
 
 	CORSAllowOrigins []string `envconfig:"CORS_ALLOW_ORIGINS" default:"*"`
 

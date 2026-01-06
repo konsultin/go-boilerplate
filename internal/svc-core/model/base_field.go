@@ -26,3 +26,15 @@ func NewBaseField(subject *dto.Subject) BaseField {
 		Metadata:   sqlk.EmptyObjectJSON,
 	}
 }
+
+// NewBaseFieldFromModel creates BaseField from model.Subject (for service layer use)
+func NewBaseFieldFromModel(subject *Subject) BaseField {
+	t := timek.Now()
+	return BaseField{
+		CreatedAt:  t,
+		UpdatedAt:  t,
+		ModifiedBy: subject,
+		Version:    1,
+		Metadata:   sqlk.EmptyObjectJSON,
+	}
+}

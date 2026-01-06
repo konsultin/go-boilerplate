@@ -19,3 +19,15 @@ func NewSubject(d *dto.Subject) *Subject {
 		FullName: d.FullName,
 	}
 }
+
+func ToSubjectResult(s *Subject) *dto.Subject {
+	if s == nil {
+		return nil
+	}
+
+	return &dto.Subject{
+		Id:       s.Id,
+		Role:     s.Role,
+		FullName: s.FullName,
+	}
+}

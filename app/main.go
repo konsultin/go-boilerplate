@@ -19,7 +19,7 @@ import (
 )
 
 func konsultinAscii() string {
-	return `
+	return ` 
 '     __  _   ___   ____   _____ __ __  _     ______  ____  ____       ___      ___ __ __ 
 '    |  |/ ] /   \ |    \ / ___/|  |  || |   |      ||    ||    \     |   \    /  _]  |  |
 '    |  ' / |     ||  _  (   \_ |  |  || |   |      | |  | |  _  |    |    \  /  [_|  |  |
@@ -29,7 +29,7 @@ func konsultinAscii() string {
 '    |__|\_| \___/ |__|__| \___| \__,_||_____| |__|  |____||__|__||__||_____||_____| \_/  
 '      
 '    Boilerplate created by Kenly Krisaguino - @kenly.krisaguino on Instagram
-'	 Version: 1.0.0
+	 Version: 1.1.0
 '                                                                                         
 	`
 }

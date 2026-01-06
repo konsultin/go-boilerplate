@@ -46,8 +46,8 @@ type JwtResponse struct {
 func (s *Service) NewJwtAdapter() *JwtAdapter {
 	return &JwtAdapter{
 		Algorithm: jwt.SigningMethodHS512,
-		Issuer:    s.Config.JwtIssuer,
-		Secret:    s.Config.JwtSecret,
+		Issuer:    s.config.JwtIssuer,
+		Secret:    s.config.JwtSecret,
 	}
 }
 

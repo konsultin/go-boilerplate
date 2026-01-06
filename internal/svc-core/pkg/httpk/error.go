@@ -43,3 +43,7 @@ var NotFoundError = b.NewError("404", "Not Found",
 var CancelError = b.NewError("408", "Request Canceled",
 	errk.WithHTTPStatus(fhttp.StatusRequestTimeout),
 )
+
+var InvalidPayloadError = b.NewError("422", "Invalid Payload",
+	errk.WithHTTPStatus(fhttp.StatusUnprocessableEntity),
+)

@@ -33,7 +33,7 @@ func New(config *config.Config, startedAt time.Time) (*Server, error) {
 		return nil, errk.Trace(err)
 	}
 
-	svc := service.NewService(repo)
+	svc := service.NewService(repo, config)
 
 	server := &Server{
 		config:    config,
@@ -61,17 +61,15 @@ func (s *Server) NewService(ctx *f.RequestCtx) (*service.Service, error) {
 		return nil, errk.Trace(err)
 	}
 
-	return &service.Service{
-		Config: s.config,
-		Repo:   rc,
-		Ctx:    ctx,
-		Log:    logk.Get().NewChild(logkOption.WithNamespace(constant.ServiceName+"/service"), logkOption.Context(ctx)),
-		Subject: &model.Subject{
+	return s.svc.
+		WithContext(ctx).
+		WithRepo(rc).
+		WithLog(logk.Get().NewChild(logkOption.WithNamespace(constant.ServiceName+"/service"), logkOption.Context(ctx))).
+		WithSubject(&model.Subject{
 			Id:       subject.Id,
 			FullName: subject.FullName,
 			Role:     subject.Role,
-		},
-	}, nil
+		}), nil
 }
 
 func (s *Server) wrapError(ctx *f.RequestCtx, err error) error {

@@ -2,12 +2,12 @@ package svcCore
 
 import (
 	"github.com/konsultin/project-goes-here/dto"
-	unaryHttpk "github.com/konsultin/project-goes-here/internal/svc-core/pkg/httpk/unary"
 	httpkPkg "github.com/konsultin/project-goes-here/internal/svc-core/pkg/httpk"
+	unaryHttpk "github.com/konsultin/project-goes-here/internal/svc-core/pkg/httpk/unary"
 	f "github.com/valyala/fasthttp"
 )
 
-func (s *Server) HandleCreateAnonymousUserSession(ctx *f.RequestCtx) (*dto.CreateAnonymousSession_Result, error) {
+func (s *Server) HandleCreateAnonymousUserSession(ctx *f.RequestCtx) (*dto.CreateUserSession_Result, error) {
 	basicAuth := unaryHttpk.GetBasicAuth(ctx)
 	if basicAuth == nil {
 		s.log.Errorf("Basic Auth is not set in header")
@@ -29,4 +29,27 @@ func (s *Server) HandleCreateAnonymousUserSession(ctx *f.RequestCtx) (*dto.Creat
 	}
 
 	return result, nil
+}
+
+func (s *Server) HandleUserRefreshToken(ctx *f.RequestCtx) (*dto.CreateUserSession_Result_Data, error) {
+	// Bind and validate request payload
+	payload, err := httpkPkg.BindAndValidate[dto.RefreshSession_Payload](ctx)
+	if err != nil {
+		return nil, s.wrapError(ctx, err)
+	}
+
+	// Init Service
+	svc, err := s.NewService(ctx)
+	if err != nil {
+		s.log.Errorf("Failed to create service: %v", err)
+		return nil, err
+	}
+	defer svc.Close()
+
+	data, err := svc.RefreshUserSession(payload)
+	if err != nil {
+		return nil, s.wrapError(ctx, err)
+	}
+
+	return data, nil
 }

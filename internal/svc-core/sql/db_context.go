@@ -12,4 +12,5 @@ var (
 	RoleSchema          = schema.New(schema.FromModelRef(new(model.Role)), schema.As("role"))
 	RolePrivilegeSchema = schema.New(schema.FromModelRef(new(model.RolePrivilege)), schema.As("rolePrivilege"))
 	PrivilegeSchema     = schema.New(schema.FromModelRef(new(model.Privilege)), schema.As("privilege"))
+	AuthSessionSchema   = schema.New(schema.FromModelRef(new(model.AuthSession)), schema.As("auth_session"))
 )
