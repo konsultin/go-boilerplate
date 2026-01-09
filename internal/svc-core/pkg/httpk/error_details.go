@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/konsultin/project-goes-here/libs/errk"
+	"github.com/konsultin/errk"
 	fhttp "github.com/valyala/fasthttp"
 )
 

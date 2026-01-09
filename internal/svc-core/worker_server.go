@@ -7,8 +7,8 @@ import (
 	"github.com/konsultin/project-goes-here/internal/svc-core/constant"
 	"github.com/konsultin/project-goes-here/internal/svc-core/model"
 	"github.com/konsultin/project-goes-here/internal/svc-core/service"
-	"github.com/konsultin/project-goes-here/libs/logk"
-	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
+	"github.com/konsultin/logk"
+	logkOption "github.com/konsultin/logk/option"
 	"github.com/nats-io/nats.go"
 )
 

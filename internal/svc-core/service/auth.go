@@ -10,9 +10,9 @@ import (
 	"github.com/konsultin/project-goes-here/internal/svc-core/model"
 	"github.com/konsultin/project-goes-here/internal/svc-core/pkg/httpk"
 	"github.com/konsultin/project-goes-here/internal/svc-core/pkg/oauth/google"
-	"github.com/konsultin/project-goes-here/libs/errk"
-	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
-	"github.com/konsultin/project-goes-here/libs/timek"
+	"github.com/konsultin/errk"
+	logkOption "github.com/konsultin/logk/option"
+	"github.com/konsultin/timek"
 	"golang.org/x/crypto/bcrypt"
 )
 

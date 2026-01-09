@@ -2,7 +2,7 @@ package repository
 
 import (
 	"github.com/konsultin/project-goes-here/internal/svc-core/model"
-	"github.com/konsultin/project-goes-here/libs/errk"
+	"github.com/konsultin/errk"
 )
 
 func (r *Repository) FindUserByXid(xid string) (*model.User, error) {

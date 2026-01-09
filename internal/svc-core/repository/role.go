@@ -3,9 +3,9 @@ package repository
 import (
 	"github.com/konsultin/project-goes-here/internal/svc-core/model"
 	coreSql "github.com/konsultin/project-goes-here/internal/svc-core/sql"
-	"github.com/konsultin/project-goes-here/libs/errk"
-	"github.com/konsultin/project-goes-here/libs/sqlk/option"
-	"github.com/konsultin/project-goes-here/libs/sqlk/pq/query"
+	"github.com/konsultin/errk"
+	"github.com/konsultin/sqlk/option"
+	"github.com/konsultin/sqlk/pq/query"
 )
 
 func (r *Repository) FindRoleById(id int32) (*model.Role, error) {

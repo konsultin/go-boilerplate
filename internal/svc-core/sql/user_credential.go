@@ -2,8 +2,8 @@ package coreSql
 
 import (
 	"github.com/jmoiron/sqlx"
-	"github.com/konsultin/project-goes-here/libs/sqlk"
-	"github.com/konsultin/project-goes-here/libs/sqlk/pq/query"
+	"github.com/konsultin/sqlk"
+	"github.com/konsultin/sqlk/pq/query"
 )
 
 type UserCredentialSql struct {

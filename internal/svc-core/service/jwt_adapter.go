@@ -11,9 +11,9 @@ import (
 	"github.com/konsultin/project-goes-here/dto"
 	"github.com/konsultin/project-goes-here/internal/svc-core/pkg/httpk"
 	"github.com/konsultin/project-goes-here/internal/svc-core/pkg/valk"
-	"github.com/konsultin/project-goes-here/libs/errk"
-	"github.com/konsultin/project-goes-here/libs/logk"
-	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
+	"github.com/konsultin/errk"
+	"github.com/konsultin/logk"
+	logkOption "github.com/konsultin/logk/option"
 )
 
 type JwtAdapter struct {

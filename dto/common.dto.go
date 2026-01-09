@@ -1,5 +1,7 @@
 package dto
 
+type Code string
+
 type Response[T any] struct {
 	Message   string `json:"message"`
 	Code      Code   `json:"code"`

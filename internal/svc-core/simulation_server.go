@@ -1,7 +1,7 @@
 package svcCore
 
 import (
-	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
+	logkOption "github.com/konsultin/logk/option"
 	f "github.com/valyala/fasthttp"
 )
 

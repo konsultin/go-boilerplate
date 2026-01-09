@@ -5,8 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/konsultin/project-goes-here/dto"
-	"github.com/konsultin/project-goes-here/libs/logk"
+	"github.com/konsultin/logk"
 	"github.com/valyala/fasthttp"
 )
 
@@ -72,7 +71,7 @@ func RateLimit(rl *RateLimiter, log logk.Logger, onError ErrorResponder) func(fa
 		return func(ctx *fasthttp.RequestCtx) {
 			if !rl.Allow(clientKey(ctx)) {
 				log.Warn("request rejected: rate limit exceeded")
-				onError(ctx, fasthttp.StatusTooManyRequests, dto.CodeTooManyRequests, "too many requests", nil)
+				onError(ctx, fasthttp.StatusTooManyRequests, "TOO_MANY_REQUESTS", "too many requests", nil)
 				return
 			}
 			next(ctx)

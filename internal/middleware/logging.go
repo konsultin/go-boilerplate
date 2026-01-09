@@ -3,7 +3,7 @@ package middleware
 import (
 	"time"
 
-	"github.com/konsultin/project-goes-here/libs/logk"
+	"github.com/konsultin/logk"
 	"github.com/valyala/fasthttp"
 )
 

@@ -6,8 +6,8 @@ import (
 	"github.com/konsultin/project-goes-here/config"
 	"github.com/konsultin/project-goes-here/internal/svc-core/model"
 	"github.com/konsultin/project-goes-here/internal/svc-core/repository"
-	"github.com/konsultin/project-goes-here/libs/logk"
-	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
+	"github.com/konsultin/logk"
+	logkOption "github.com/konsultin/logk/option"
 )
 
 type Service struct {

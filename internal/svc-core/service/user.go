@@ -12,8 +12,8 @@ import (
 	"github.com/konsultin/project-goes-here/internal/svc-core/pkg/httpk"
 	unaryHttpk "github.com/konsultin/project-goes-here/internal/svc-core/pkg/httpk/unary"
 	"github.com/konsultin/project-goes-here/internal/svc-core/pkg/svck"
-	"github.com/konsultin/project-goes-here/libs/errk"
-	logkOption "github.com/konsultin/project-goes-here/libs/logk/option"
+	"github.com/konsultin/errk"
+	logkOption "github.com/konsultin/logk/option"
 	gonanoid "github.com/matoous/go-nanoid/v2"
 	"golang.org/x/crypto/bcrypt"
 )

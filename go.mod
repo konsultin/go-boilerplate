@@ -14,6 +14,12 @@ require (
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/joho/godotenv v1.5.1
 	github.com/kelseyhightower/envconfig v1.4.0
+	github.com/konsultin/errk v0.1.0
+	github.com/konsultin/logk v0.1.0
+	github.com/konsultin/natsk v0.1.0
+	github.com/konsultin/routek v0.1.0
+	github.com/konsultin/sqlk v0.1.0
+	github.com/konsultin/timek v0.1.0
 	github.com/lib/pq v1.10.9
 	github.com/matoous/go-nanoid/v2 v2.1.0
 	github.com/nats-io/nats.go v1.48.0
