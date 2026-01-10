@@ -74,6 +74,13 @@ func (s *Server) HandleLogin(ctx *fasthttp.RequestCtx) { ... }
 
 ## Changelog
 
+### v0.5.0 - OpenTelemetry (OTEL)
+- Integrated OpenTelemetry (OTEL) for distributed tracing
+- Added `pkg/otel` initialization wrapper
+- Added HTTP Tracing Middleware for automatic request tracking
+- Updated `docker-compose.yaml` with **Jaeger (All-in-One)** for trace visualization
+- Enabled by default at `http://localhost:16686`
+
 ### v0.4.0 - Cron Sidecar & Swagger
 - Integrated Docker application for cron scheduling (Sidecar pattern)
 - Added `deployment/cron` with `crontab` and `run.sh` script

@@ -110,6 +110,15 @@ services:
       - "8222:8222"
     restart: unless-stopped
 
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - "16686:16686" # UI
+      - "4317:4317"   # OTLP gRPC
+    restart: unless-stopped
+
   cron:
     build:
       context: ../cron

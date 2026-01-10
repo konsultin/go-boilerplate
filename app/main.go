@@ -13,8 +13,10 @@ import (
 	logkOption "github.com/konsultin/logk/option"
 	"github.com/konsultin/project-goes-here/config"
 	_ "github.com/konsultin/project-goes-here/docs" // Swagger docs
+
 	"github.com/konsultin/project-goes-here/internal/middleware"
 	svcCore "github.com/konsultin/project-goes-here/internal/svc-core"
+	"github.com/konsultin/project-goes-here/pkg/otel"
 	"github.com/konsultin/routek"
 	fasthttpSwagger "github.com/swaggo/fasthttp-swagger"
 	"github.com/valyala/fasthttp"
@@ -31,7 +33,7 @@ func konsultinAscii() string {
 '    |__|\_| \___/ |__|__| \___| \__,_||_____| |__|  |____||__|__||__||_____||_____| \_/  
 '      
 '    Boilerplate created by Kenly Krisaguino - @kenly.krisaguino on Instagram
-	 Version: 0.4.0
+	 Version: ` + config.Version + `
 '                                                                                         
 	`
 }
@@ -62,6 +64,19 @@ func main() {
 	}
 	startedAt := time.Now()
 	rootLog := logk.Get().NewChild(logkOption.WithNamespace("api"))
+
+	// Init OTEL
+	shutdown, err := otel.InitTracerProvider(context.Background(), cfg.LogNamespace, config.Version, cfg.OtelCollectorEndpoint)
+	if err != nil {
+		rootLog.Error("Failed to init OTEL", logkOption.Error(errk.Trace(err)))
+	} else {
+		defer func() {
+			if err := shutdown(context.Background()); err != nil {
+				rootLog.Error("Failed to shutdown OTEL", logkOption.Error(errk.Trace(err)))
+			}
+		}()
+	}
+
 	rootLog.Infof("API starting... env=%s", cfg.Env)
 
 	fmt.Println(konsultinAscii())
@@ -118,7 +133,7 @@ func main() {
 	}
 
 	server := &fasthttp.Server{
-		Handler:      handler,
+		Handler:      otel.Middleware("api")(handler),
 		ReadTimeout:  time.Duration(cfg.HTTPReadTimeoutSeconds) * time.Second,
 		WriteTimeout: time.Duration(cfg.HTTPWriteTimeoutSeconds) * time.Second,
 		IdleTimeout:  time.Duration(cfg.HTTPIdleTimeoutSeconds) * time.Second,

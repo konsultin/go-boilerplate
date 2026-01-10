@@ -14,6 +14,8 @@ type Config struct {
 	Port  uint16 `envconfig:"PORT" default:"8080"`
 	Debug bool   `envconfig:"DEBUG" default:"false"`
 
+	LogNamespace string `envconfig:"LOG_NAMESPACE" default:"api"`
+
 	HTTPReadTimeoutSeconds  int `envconfig:"HTTP_READ_TIMEOUT_SECONDS" default:"15"`
 	HTTPWriteTimeoutSeconds int `envconfig:"HTTP_WRITE_TIMEOUT_SECONDS" default:"15"`
 	HTTPIdleTimeoutSeconds  int `envconfig:"HTTP_IDLE_TIMEOUT_SECONDS" default:"60"`
@@ -33,6 +35,9 @@ type Config struct {
 	FeatureFlagUUPDP        bool `envconfig:"FEATURE_FLAG_UUPDP" default:"false"`
 
 	CORSAllowOrigins []string `envconfig:"CORS_ALLOW_ORIGINS" default:"*"`
+
+	// OTEL
+	OtelCollectorEndpoint string `envconfig:"OTEL_COLLECTOR_ENDPOINT" default:"localhost:4317"`
 
 	// OAuth Configuration
 	GoogleClientID    string `envconfig:"GOOGLE_CLIENT_ID" default:""`
