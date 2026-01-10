@@ -60,6 +60,20 @@ type Config struct {
 
 	// NATS Configuration
 	NatsUrl string `envconfig:"NATS_URL" default:"nats://localhost:4222"`
+
+	// Redis Configuration
+	RedisHost     string `envconfig:"REDIS_HOST" default:"localhost"`
+	RedisPort     int    `envconfig:"REDIS_PORT" default:"6379"`
+	RedisPassword string `envconfig:"REDIS_PASSWORD" default:""`
+	RedisDB       int    `envconfig:"REDIS_DB" default:"0"`
+
+	// MinIO/S3 Storage Configuration
+	MinioEndpoint  string `envconfig:"MINIO_ENDPOINT" default:"localhost:9000"`
+	MinioAccessKey string `envconfig:"MINIO_ACCESS_KEY" default:"minioadmin"`
+	MinioSecretKey string `envconfig:"MINIO_SECRET_KEY" default:"minioadmin"`
+	MinioBucket    string `envconfig:"MINIO_BUCKET" default:"uploads"`
+	MinioUseSSL    bool   `envconfig:"MINIO_USE_SSL" default:"false"`
+	MinioRegion    string `envconfig:"MINIO_REGION" default:"us-east-1"`
 }
 
 // Load reads environment variables (optionally from .env) into Config with defaults, and validates them.

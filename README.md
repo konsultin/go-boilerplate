@@ -74,6 +74,13 @@ func (s *Server) HandleLogin(ctx *fasthttp.RequestCtx) { ... }
 
 ## Changelog
 
+### v0.7.0 - MinIO Storage
+- Added `pkg/storage` helper for MinIO/S3 compatible storage
+- Upload, Download, Presigned URL helpers
+- Auto content-type detection
+- Added MinIO service to `docker-compose.yaml`
+- Added Redis and MinIO configuration to `config.go`
+
 ### v0.6.0 - Redis Cache
 - Added `pkg/redis` helper with connection pool support
 - Atomic operations: `SetNX`, `Incr/Decr`
