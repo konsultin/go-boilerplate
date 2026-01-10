@@ -106,8 +106,8 @@ services:
   nats:
     image: nats:latest
     ports:
-      - "4222:4222"
-      - "8222:8222"
+      - "${NATS_PORT:-4222}:4222"
+      - "${NATS_MONITOR_PORT:-8222}:8222"
     restart: unless-stopped
 
   jaeger:
@@ -115,8 +115,16 @@ services:
     environment:
       - COLLECTOR_OTLP_ENABLED=true
     ports:
-      - "16686:16686" # UI
-      - "4317:4317"   # OTLP gRPC
+      - "${JAEGER_UI_PORT:-16686}:16686"   # UI
+      - "${OTEL_GRPC_PORT:-4317}:4317"     # OTLP gRPC
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
     restart: unless-stopped
 
   cron:
@@ -132,3 +140,4 @@ services:
 volumes:
   mysql_data:
   postgres_data:
+  redis_data:

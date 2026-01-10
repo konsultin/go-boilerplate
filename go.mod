@@ -37,6 +37,7 @@ require (
 	github.com/andybalholm/brotli v1.2.0 // indirect
 	github.com/cenkalti/backoff/v5 v5.0.3 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/dromara/carbon/v2 v2.6.15 // indirect
 	github.com/fasthttp/router v1.5.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.12 // indirect
@@ -61,6 +62,7 @@ require (
 	github.com/lib/pq v1.10.9 // indirect
 	github.com/nats-io/nkeys v0.4.11 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
+	github.com/redis/go-redis/v9 v9.17.2 // indirect
 	github.com/savsgio/gotils v0.0.0-20240704082632-aef3928b8a38 // indirect
 	github.com/swaggo/files/v2 v2.0.2 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect

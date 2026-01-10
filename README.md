@@ -74,6 +74,13 @@ func (s *Server) HandleLogin(ctx *fasthttp.RequestCtx) { ... }
 
 ## Changelog
 
+### v0.6.0 - Redis Cache
+- Added `pkg/redis` helper with connection pool support
+- Atomic operations: `SetNX`, `Incr/Decr`
+- Configurable timeouts: `DialTimeout`, `ReadTimeout`, `WriteTimeout`
+- Added Redis service to `docker-compose.yaml`
+- All Docker ports now configurable via `.env`
+
 ### v0.5.0 - OpenTelemetry (OTEL)
 - Integrated OpenTelemetry (OTEL) for distributed tracing
 - Added `pkg/otel` initialization wrapper
