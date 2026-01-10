@@ -10,7 +10,12 @@ MIGRATE ?= $(shell go env GOPATH)/bin/migrate
 -include .env
 export
 
-.PHONY: setup-project init run lint tidy dev up down db-up db-down db-script db-version bs
+.PHONY: setup-project init run lint tidy dev up down db-up db-down db-script db-version bs swagger
+
+swagger:
+	@echo "Generating Swagger docs..."
+	go run github.com/swaggo/swag/cmd/swag init -g app/main.go --output docs --parseDependency --parseInternal
+
 
 setup-project:
 	@read -p "Project name (no spaces): " NAME; \
@@ -64,9 +69,6 @@ run:
 	@echo "Starting API server..."; \
 	go run ./app
 
-lint:
-	@echo "Running go vet..."; \
-	go vet ./...
 
 tidy:
 	@echo "Running go mod tidy..."; \

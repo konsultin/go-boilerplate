@@ -1,0 +1,306 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server for Konsultin API Boilerplate.",
+        "title": "Konsultin API Boilerplate",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "0.4.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/v1",
+    "paths": {
+        "/v1/users/sessions/login": {
+            "post": {
+                "description": "Authenticate user using identifier (email/phone/username) and password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "sessions"
+                ],
+                "summary": "Login with Password",
+                "parameters": [
+                    {
+                        "description": "Login Password Payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.LoginPassword_Payload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_konsultin_project-goes-here_dto.Response-dto_CreateUserSession_Result_Data"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Request",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_konsultin_project-goes-here_dto.Response-dto_Empty"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_konsultin_project-goes-here_dto.Response-dto_Empty"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_konsultin_project-goes-here_dto.Response-dto_Empty"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.CreateUserSession_Result_Data": {
+            "type": "object",
+            "properties": {
+                "accessScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "accessSession": {
+                    "$ref": "#/definitions/dto.Session"
+                },
+                "refreshSession": {
+                    "$ref": "#/definitions/dto.Session"
+                },
+                "user": {
+                    "$ref": "#/definitions/dto.User"
+                }
+            }
+        },
+        "dto.DevicePlatform_Enum": {
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "x-enum-varnames": [
+                "DevicePlatform_UNKNOWN",
+                "DevicePlatform_ANDROID",
+                "DevicePlatform_IOS",
+                "DevicePlatform_WEB_BROWSER"
+            ]
+        },
+        "dto.DeviceSession": {
+            "type": "object",
+            "properties": {
+                "clientIP": {
+                    "type": "string"
+                },
+                "deviceId": {
+                    "type": "string",
+                    "maxLength": 128
+                },
+                "devicePlatformId": {
+                    "$ref": "#/definitions/dto.DevicePlatform_Enum"
+                },
+                "notificationChannelId": {
+                    "$ref": "#/definitions/dto.NotificationChannel_Enum"
+                },
+                "notificationChannelToken": {
+                    "type": "string",
+                    "maxLength": 512
+                }
+            }
+        },
+        "dto.Empty": {
+            "type": "object"
+        },
+        "dto.File": {
+            "type": "object",
+            "properties": {
+                "fileName": {
+                    "type": "string"
+                },
+                "signature": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.LoginPassword_Payload": {
+            "type": "object",
+            "required": [
+                "identifier",
+                "password"
+            ],
+            "properties": {
+                "device": {
+                    "$ref": "#/definitions/dto.DeviceSession"
+                },
+                "identifier": {
+                    "description": "username, email, or phone",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                },
+                "password": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 6
+                }
+            }
+        },
+        "dto.NotificationChannel_Enum": {
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+                0,
+                1,
+                2
+            ],
+            "x-enum-varnames": [
+                "NotificationChannel_UNKNOWN",
+                "NotificationChannel_FCM",
+                "NotificationChannel_APNS"
+            ]
+        },
+        "dto.Session": {
+            "type": "object",
+            "properties": {
+                "expiredAt": {
+                    "type": "integer"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.Status": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.Subject": {
+            "type": "object",
+            "properties": {
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.User": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "string"
+                },
+                "avatar": {
+                    "$ref": "#/definitions/dto.File"
+                },
+                "createdAt": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "modifiedBy": {
+                    "$ref": "#/definitions/dto.Subject"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/definitions/dto.Status"
+                },
+                "updatedAt": {
+                    "type": "integer"
+                },
+                "version": {
+                    "type": "integer"
+                },
+                "xid": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_konsultin_project-goes-here_dto.Response-dto_CreateUserSession_Result_Data": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/dto.CreateUserSession_Result_Data"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_konsultin_project-goes-here_dto.Response-dto_Empty": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/dto.Empty"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

@@ -2,7 +2,7 @@ core:
   route:
     - get: /
       handler: HealthCheck
-    - post: /v1/cron/{cronType}
+    - get: /v1/cron/{cronType}
       handler: HandleCronTrigger
     - post: /v1/users/anon/sessions
       handler: HandleCreateAnonymousUserSession

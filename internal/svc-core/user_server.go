@@ -55,6 +55,17 @@ func (s *Server) HandleUserRefreshToken(ctx *f.RequestCtx) (*dto.CreateUserSessi
 }
 
 // HandleLoginPassword handles login with email/phone/username + password
+// @Summary      Login with Password
+// @Description  Authenticate user using identifier (email/phone/username) and password
+// @Tags         sessions
+// @Accept       json
+// @Produce      json
+// @Param        request body dto.LoginPassword_Payload true "Login Password Payload"
+// @Success      200  {object}  dto.Response[dto.CreateUserSession_Result_Data]
+// @Failure      400  {object}  dto.Response[dto.Empty] "Invalid Request"
+// @Failure      401  {object}  dto.Response[dto.Empty] "Unauthorized"
+// @Failure      500  {object}  dto.Response[dto.Empty] "Internal Error"
+// @Router       /v1/users/sessions/login [post]
 func (s *Server) HandleLoginPassword(ctx *f.RequestCtx) (*dto.CreateUserSession_Result_Data, error) {
 	// Bind and validate request payload
 	payload, err := httpkPkg.BindAndValidate[dto.LoginPassword_Payload](ctx)

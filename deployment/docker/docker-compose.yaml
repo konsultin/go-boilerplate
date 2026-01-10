@@ -14,6 +14,10 @@ x-app-base: &app-base
   ports:
     - "${PORT}:${PORT}"
   restart: unless-stopped
+  networks:
+    default:
+      aliases:
+        - core-api
 
 services:
   core-app-1:
@@ -104,6 +108,16 @@ services:
     ports:
       - "4222:4222"
       - "8222:8222"
+    restart: unless-stopped
+
+  cron:
+    build:
+      context: ../cron
+      dockerfile: Dockerfile
+    image: ${COMPOSE_PROJECT_NAME:-api-template}-cron
+    environment:
+      CRON_USERNAME: ${CRON_USERNAME}
+      CRON_PASSWORD: ${CRON_PASSWORD}
     restart: unless-stopped
 
 volumes:

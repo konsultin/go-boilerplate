@@ -1,0 +1,208 @@
+basePath: /v1
+definitions:
+  dto.CreateUserSession_Result_Data:
+    properties:
+      accessScopes:
+        items:
+          type: string
+        type: array
+      accessSession:
+        $ref: '#/definitions/dto.Session'
+      refreshSession:
+        $ref: '#/definitions/dto.Session'
+      user:
+        $ref: '#/definitions/dto.User'
+    type: object
+  dto.DevicePlatform_Enum:
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+    format: int32
+    type: integer
+    x-enum-varnames:
+    - DevicePlatform_UNKNOWN
+    - DevicePlatform_ANDROID
+    - DevicePlatform_IOS
+    - DevicePlatform_WEB_BROWSER
+  dto.DeviceSession:
+    properties:
+      clientIP:
+        type: string
+      deviceId:
+        maxLength: 128
+        type: string
+      devicePlatformId:
+        $ref: '#/definitions/dto.DevicePlatform_Enum'
+      notificationChannelId:
+        $ref: '#/definitions/dto.NotificationChannel_Enum'
+      notificationChannelToken:
+        maxLength: 512
+        type: string
+    type: object
+  dto.Empty:
+    type: object
+  dto.File:
+    properties:
+      fileName:
+        type: string
+      signature:
+        type: string
+      url:
+        type: string
+    type: object
+  dto.LoginPassword_Payload:
+    properties:
+      device:
+        $ref: '#/definitions/dto.DeviceSession'
+      identifier:
+        description: username, email, or phone
+        maxLength: 255
+        minLength: 3
+        type: string
+      password:
+        maxLength: 128
+        minLength: 6
+        type: string
+    required:
+    - identifier
+    - password
+    type: object
+  dto.NotificationChannel_Enum:
+    enum:
+    - 0
+    - 1
+    - 2
+    format: int32
+    type: integer
+    x-enum-varnames:
+    - NotificationChannel_UNKNOWN
+    - NotificationChannel_FCM
+    - NotificationChannel_APNS
+  dto.Session:
+    properties:
+      expiredAt:
+        type: integer
+      token:
+        type: string
+    type: object
+  dto.Status:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  dto.Subject:
+    properties:
+      fullName:
+        type: string
+      id:
+        type: string
+      role:
+        type: string
+    type: object
+  dto.User:
+    properties:
+      age:
+        type: string
+      avatar:
+        $ref: '#/definitions/dto.File'
+      createdAt:
+        type: integer
+      email:
+        type: string
+      fullName:
+        type: string
+      id:
+        type: integer
+      modifiedBy:
+        $ref: '#/definitions/dto.Subject'
+      phone:
+        type: string
+      status:
+        $ref: '#/definitions/dto.Status'
+      updatedAt:
+        type: integer
+      version:
+        type: integer
+      xid:
+        type: string
+    type: object
+  github_com_konsultin_project-goes-here_dto.Response-dto_CreateUserSession_Result_Data:
+    properties:
+      code:
+        type: string
+      data:
+        $ref: '#/definitions/dto.CreateUserSession_Result_Data'
+      message:
+        type: string
+      timestamp:
+        type: integer
+    type: object
+  github_com_konsultin_project-goes-here_dto.Response-dto_Empty:
+    properties:
+      code:
+        type: string
+      data:
+        $ref: '#/definitions/dto.Empty'
+      message:
+        type: string
+      timestamp:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server for Konsultin API Boilerplate.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Konsultin API Boilerplate
+  version: 0.4.0
+paths:
+  /v1/users/sessions/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user using identifier (email/phone/username) and password
+      parameters:
+      - description: Login Password Payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.LoginPassword_Payload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_konsultin_project-goes-here_dto.Response-dto_CreateUserSession_Result_Data'
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: '#/definitions/github_com_konsultin_project-goes-here_dto.Response-dto_Empty'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_konsultin_project-goes-here_dto.Response-dto_Empty'
+        "500":
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/github_com_konsultin_project-goes-here_dto.Response-dto_Empty'
+      summary: Login with Password
+      tags:
+      - sessions
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

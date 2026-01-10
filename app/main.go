@@ -8,13 +8,15 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/konsultin/project-goes-here/config"
-	"github.com/konsultin/project-goes-here/internal/middleware"
-	svcCore "github.com/konsultin/project-goes-here/internal/svc-core"
 	"github.com/konsultin/errk"
 	"github.com/konsultin/logk"
 	logkOption "github.com/konsultin/logk/option"
+	"github.com/konsultin/project-goes-here/config"
+	_ "github.com/konsultin/project-goes-here/docs" // Swagger docs
+	"github.com/konsultin/project-goes-here/internal/middleware"
+	svcCore "github.com/konsultin/project-goes-here/internal/svc-core"
 	"github.com/konsultin/routek"
+	fasthttpSwagger "github.com/swaggo/fasthttp-swagger"
 	"github.com/valyala/fasthttp"
 )
 
@@ -29,11 +31,29 @@ func konsultinAscii() string {
 '    |__|\_| \___/ |__|__| \___| \__,_||_____| |__|  |____||__|__||__||_____||_____| \_/  
 '      
 '    Boilerplate created by Kenly Krisaguino - @kenly.krisaguino on Instagram
-	 Version: 1.2.0
+	 Version: 0.4.0
 '                                                                                         
 	`
 }
 
+// @title           Konsultin API Boilerplate
+// @version         0.4.0
+// @description     This is a sample server for Konsultin API Boilerplate.
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   API Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      localhost:8080
+// @BasePath  /v1
+
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	cfg, err := config.Load()
 	if err != nil {
@@ -74,8 +94,18 @@ func main() {
 		return
 	}
 
+	// Swagger Handler Wrapper
+	swaggerHandler := fasthttpSwagger.WrapHandler(fasthttpSwagger.URL("/swagger/doc.json"))
+
 	handler, err := middleware.Init(middleware.Config{
-		Handler:          rt.Handler,
+		Handler: func(ctx *fasthttp.RequestCtx) {
+			path := string(ctx.Path())
+			if len(path) >= 8 && path[:8] == "/swagger" {
+				swaggerHandler(ctx)
+				return
+			}
+			rt.Handler(ctx)
+		},
 		Logger:           rootLog,
 		OnError:          resp.Error,
 		RateLimitRPS:     cfg.RateLimitRPS,

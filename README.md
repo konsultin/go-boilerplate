@@ -40,13 +40,53 @@ This template comes pre-wired with:
 - [`routek`](https://github.com/konsultin/routek) - YAML routing
 - [`timek`](https://github.com/konsultin/timek) - Time utilities
 
+## API Documentation (Swagger 3.0)
+
+This template includes auto-generated API docs using [Swaggo](https://github.com/swaggo/swag).
+
+### 1. Generate Docs
+Run this command after modifying API handlers:
+```bash
+make swagger
+```
+
+### 2. View Documentation
+Start the server and visit: [http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
+
+### 3. Usage Example
+Add annotations above your handler:
+
+```go
+// @Summary      Login user
+// @Tags         auth
+// @Param        request body dto.LoginRequest true "Credentials"
+// @Success      200  {object}  dto.Response[dto.LoginResponse]
+// @Router       /v1/login [post]
+func (s *Server) HandleLogin(ctx *fasthttp.RequestCtx) { ... }
+```
+
+## Makefile Commands
+
+| Command | Description |
+|---------|-------------|
+| `make swagger` | Generate API docs |
+| `make dev` | Start with hot-reload |
+
 ## Changelog
+
+### v0.4.0 - Cron Sidecar & Swagger
+- Integrated Docker application for cron scheduling (Sidecar pattern)
+- Added `deployment/cron` with `crontab` and `run.sh` script
+- Added unified cron endpoint `GET /v1/cron/:cronType`
+- Updated Docker Compose to include `cron` service and `core-api` network alias
+- Integrated Swagger (OpenAPI 3.0) for API documentation
 
 ### v0.3.0 - Modularization
 - Migrated internal libs to independent `github.com/konsultin/*` modules
 - Removed local `libs/` directory
 - Integrated `routek` for improved routing definition
 - Standardized error handling with `errk`
+
 
 ### v0.2.0 - Async Workers
 - Integrated NATS for background job processing

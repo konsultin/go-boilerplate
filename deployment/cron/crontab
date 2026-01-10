@@ -1,0 +1,7 @@
+# Example Crontab file
+# Format: min hour day month day-of-week command
+
+# Example: Trigger 'example' cron type every minute
+# * * * * * run example >> /proc/1/fd/1 2>&1
+
+# Add your cron jobs below:
