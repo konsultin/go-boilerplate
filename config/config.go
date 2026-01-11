@@ -105,7 +105,7 @@ func Load() (*Config, error) {
 }
 
 func (c *Config) validate() error {
-	if c.Port == 0 || c.Port > 65535 {
+	if c.Port == 0 {
 		return fmt.Errorf("invalid PORT %d", c.Port)
 	}
 

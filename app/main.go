@@ -14,10 +14,10 @@ import (
 	"github.com/konsultin/project-goes-here/config"
 	_ "github.com/konsultin/project-goes-here/docs" // Swagger docs
 
+	"github.com/go-konsultin/routek"
 	"github.com/konsultin/project-goes-here/internal/middleware"
 	svcCore "github.com/konsultin/project-goes-here/internal/svc-core"
 	"github.com/konsultin/project-goes-here/pkg/otel"
-	"github.com/go-konsultin/routek"
 	fasthttpSwagger "github.com/swaggo/fasthttp-swagger"
 	"github.com/valyala/fasthttp"
 )
@@ -39,7 +39,7 @@ func konsultinAscii() string {
 }
 
 // @title           Konsultin API Boilerplate
-// @version         0.4.0
+// @version         0.7.1
 // @description     This is a sample server for Konsultin API Boilerplate.
 // @termsOfService  http://swagger.io/terms/
 

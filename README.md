@@ -186,6 +186,65 @@ make db-down
 4.  Push to the branch (`git push origin feature/amazing-feature`).
 5.  Open a Pull Request.
 
+## Changelog
+
+### v0.7.1 - Documentation & Cleanup
+- Added comprehensive `README.md` documentation
+- Added Architecture Overview diagram and description
+- Corrected 3rd party API package location to `internal/svc-core/pkg/`
+- Verified and fixed `.env.example` keys
+- Codebase version bumped to 0.7.1
+
+### v0.7.0 - MinIO Storage
+- Added `pkg/storage` helper for MinIO/S3 compatible storage
+- Upload, Download, Presigned URL helpers
+- Auto content-type detection
+- Added MinIO service to `docker-compose.yaml`
+- Added Redis and MinIO configuration to `config.go`
+
+### v0.6.0 - Redis Cache
+- Added `pkg/redis` helper with connection pool support
+- Atomic operations: `SetNX`, `Incr/Decr`
+- Configurable timeouts: `DialTimeout`, `ReadTimeout`, `WriteTimeout`
+- Added Redis service to `docker-compose.yaml`
+- All Docker ports now configurable via `.env`
+
+### v0.5.0 - OpenTelemetry (OTEL)
+- Integrated OpenTelemetry (OTEL) for distributed tracing
+- Added `pkg/otel` initialization wrapper
+- Added HTTP Tracing Middleware for automatic request tracking
+- Updated `docker-compose.yaml` with **Jaeger (All-in-One)** for trace visualization
+- Enabled by default at `http://localhost:16686`
+
+### v0.4.0 - Cron Sidecar & Swagger
+- Integrated Docker application for cron scheduling (Sidecar pattern)
+- Added `deployment/cron` with `crontab` and `run.sh` script
+- Added unified cron endpoint `GET /v1/cron/:cronType`
+- Updated Docker Compose to include `cron` service and `core-api` network alias
+- Integrated Swagger (OpenAPI 3.0) for API documentation
+
+### v0.3.0 - Modularization
+- Migrated internal libs to independent `github.com/konsultin/*` modules
+- Removed local `libs/` directory
+- Integrated `routek` for improved routing definition
+- Standardized error handling with `errk`
+
+### v0.2.0 - Async Workers
+- Integrated NATS for background job processing
+- Added worker simulation endpoints
+- Standardized publisher/subscriber patterns
+
+### v0.1.0 - Auth System
+- Implemented JWT session management
+- Added Google OAuth 2.0 support
+- Added Anonymous session flow
+- Integrated RBAC (Role-Based Access Control)
+
+### v0.0.1 - Genesis
+- Initial boilerplate structure
+- Docker & Migration setup
+- Basic HTTP middleware (CORS, Rate Limit)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
