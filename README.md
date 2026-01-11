@@ -188,6 +188,10 @@ make db-down
 
 ## Changelog
 
+### v0.7.3 - Production Readiness
+- Enabled Redis AOF (Append Only File) persistence in `docker-compose.yaml` for data durability
+- Clarified MinIO vs S3 usage in documentation
+
 ### v0.7.2 - Redis Session Storage
 - Migrated User Session storage from PostgreSQL to Redis
 - Implemented `DeleteSessionByXid` for Redis compatibility
