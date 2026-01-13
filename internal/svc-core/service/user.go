@@ -9,6 +9,7 @@ import (
 	"github.com/go-konsultin/errk"
 	logkOption "github.com/go-konsultin/logk/option"
 	"github.com/konsultin/project-goes-here/dto"
+	specErr "github.com/konsultin/project-goes-here/internal/errors"
 	"github.com/konsultin/project-goes-here/internal/svc-core/constant"
 	"github.com/konsultin/project-goes-here/internal/svc-core/model"
 	"github.com/konsultin/project-goes-here/internal/svc-core/pkg/httpk"
@@ -23,20 +24,21 @@ func (s *Service) CreateAnonymousUserSession(payload *unaryHttpk.BasicAuth, clie
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			s.log.Errorf("clientAuth is not found. Username = %s", payload.Username)
-			return nil, httpk.UnauthorizedError
+			return nil, specErr.InvalidCredentials
 		}
-		s.log.Error("Failed to FindClientAuthByClientId. Username = %s", logkOption.Error(err))
+		s.log.Error("Failed to FindClientAuthByClientId", logkOption.Error(err))
+		return nil, errk.Trace(err)
 	}
 
 	err = bcrypt.CompareHashAndPassword([]byte(clientAuth.Options.ClientSecret), []byte(payload.Password))
 	if err != nil {
 		s.log.Error("Failed to compare the password", logkOption.Error(err))
-		return nil, httpk.UnauthorizedError.Wrap(err).Trace()
+		return nil, specErr.InvalidCredentials.Wrap(err).Trace()
 	}
 
 	if clientAuth.ClientTypeId != clientTypeId {
 		s.log.Error("Invalid clientTypeId")
-		return nil, httpk.UnauthorizedError.Trace()
+		return nil, specErr.InvalidClientType.Trace()
 	}
 
 	var subjectType int32

@@ -91,5 +91,13 @@ func (s *Server) wrapError(ctx *f.RequestCtx, err error) error {
 		err = httpk.CancelError.Wrap(err)
 	}
 
+	// Extract HTTP status from errk.Error metadata
+	var errkErr *errk.Error
+	if errors.As(err, &errkErr) {
+		if status, ok := errkErr.Metadata()["http_status"].(int); ok {
+			ctx.SetStatusCode(status)
+		}
+	}
+
 	return err
 }

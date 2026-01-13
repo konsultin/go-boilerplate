@@ -6,7 +6,7 @@ require (
 	github.com/go-konsultin/errk v0.2.1
 	github.com/go-konsultin/logk v0.2.1
 	github.com/go-konsultin/natsk v0.2.1
-	github.com/go-konsultin/routek v0.2.1
+	github.com/go-konsultin/routek v0.2.5
 	github.com/go-konsultin/sqlk v0.2.2
 	github.com/go-konsultin/timek v0.2.1
 	github.com/go-playground/validator/v10 v10.30.1
